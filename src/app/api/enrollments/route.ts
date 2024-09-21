@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { headers } from "next/headers";
 import { Payload } from "@lib/DB";
-import { zEnrollmentPostBody } from "@lib/schema";
+// import { zEnrollmentPostBody } from "@lib/schema";
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   const rawAuthHeader = headers().get("authorization");
 
   if (!rawAuthHeader || !rawAuthHeader.startsWith("Bearer ")) {
@@ -182,7 +182,7 @@ export const DELETE = async (request: NextRequest) => {
 
   let studentId = null;
   let role = null;
-  
+
   try {
     const payload = jwt.verify(token, secret);
     studentId = (<Payload>payload).studentId;
